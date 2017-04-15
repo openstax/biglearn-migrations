@@ -1,0 +1,34 @@
+MANIFEST
+build/
+dist/
+docs/_build/
+node_modules/
+
+# py.test state cache
+.cache/
+.coverage
+.coverage.*
+.hypothesis/
+.tox/
+
+.eggs/
+*.egg
+*.egg-info
+.pydeps
+
+# development TLS cert/key
+.tlscert.pem
+.tlscsr.pem
+.tlskey.pem
+
+*.pyc
+*.pyo
+
+*.log
+
+celerybeat-schedule
+celerybeat-schedule.*
+celerybeat.pid
+
+.idea
+.venv

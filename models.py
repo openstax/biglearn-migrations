@@ -1,6 +1,15 @@
 # coding: utf-8
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Index, Integer, \
-    String, Table, Text, text
+from sqlalchemy import (Boolean,
+                        Column,
+                        DateTime,
+                        Float,
+                        ForeignKey,
+                        Index,
+                        Integer,
+                        String,
+                        Table,
+                        Text,
+                        text)
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -1326,3 +1335,41 @@ class UserTour(Base):
     identifier = Column(Text, nullable=False, unique=True)
     created_at = Column(DateTime, nullable=False)
     updated_at = Column(DateTime, nullable=False)
+
+
+class Cmatrix(Base):
+    __tablename__ = 'cmatrix'
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('knowledge.cmatrix_id_seq'::regclass)"))
+    learner_id = Column(String(255), nullable=False, index=True)
+    topic_id = Column(String(255), nullable=False, index=True)
+    mastery = Column(Float(53), nullable=False)
+    created = Column(DateTime, nullable=False, server_default=text("now()"))
+
+
+class Cpercent(Base):
+    __tablename__ = 'cpercent'
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('knowledge.cpercent_id_seq'::regclass)"))
+    percentile = Column(Integer, nullable=False, unique=True)
+    mastery = Column(Float(53), nullable=False, index=True)
+    created = Column(DateTime, nullable=False, server_default=text("now()"))
+
+
+class Mu(Base):
+    __tablename__ = 'mu'
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('knowledge.mu_id_seq'::regclass)"))
+    question_id = Column(String(255), nullable=False, unique=True)
+    difficulty = Column(Float(53), nullable=False)
+    created = Column(DateTime, nullable=False, server_default=text("now()"))
+
+
+class Wmatrix(Base):
+    __tablename__ = 'wmatrix'
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('knowledge.wmatrix_id_seq'::regclass)"))
+    question_id = Column(String(255), nullable=False, index=True)
+    topic_id = Column(String(255), nullable=False, index=True)
+    assoc_score = Column(Float(53), nullable=False)
+    created = Column(DateTime, nullable=False, server_default=text("now()"))

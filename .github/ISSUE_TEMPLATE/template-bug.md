@@ -1,6 +1,6 @@
 ---
-name: ISSUE_TEMPLATE
-about: Default issue template
+name: Bug Templte
+about: Bug issue template
 
 ---
 
